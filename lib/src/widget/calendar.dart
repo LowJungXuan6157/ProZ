@@ -34,7 +34,7 @@ class _ProZCalendarState extends State<ProZCalendar> {
   int? month;
   int? year;
   final PageController pageController = PageController();
-  DateTime displayDate = DateTime.now();
+  DateTime displayDate = DateTime.now().add(const Duration(days: 1));
 
   @override
   void initState() {
