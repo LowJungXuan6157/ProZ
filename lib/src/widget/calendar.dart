@@ -214,7 +214,7 @@ class _ProZCalendarState extends State<ProZCalendar> {
         date: date,
         label: date.day.toString(),
         type: CalendarCellType.current,
-        enable: firstDay == null ? true : date.isAtSameMomentAs(firstDay ?? DateTime.now()),
+        enable: firstDay == null ? true : date.isBefore(firstDay ?? DateTime.now()),
       ));
     }
 
