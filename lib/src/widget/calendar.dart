@@ -36,11 +36,11 @@ class _ProZCalendarState extends State<ProZCalendar> {
   final PageController pageController = PageController();
   DateTime displayDate = DateTime.now();
 
-  @override
+
   @override
   void initState() {
     selectedDate = widget.selectedDate.add(const Duration(days: 1));
-    displayDate = widget.selectedDate;
+    displayDate = widget.selectedDate.add(const Duration(days: 1));
     firstDay = widget.firstDay;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.firstDay != null && widget.enable) {
