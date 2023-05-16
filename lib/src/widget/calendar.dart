@@ -37,15 +37,16 @@ class _ProZCalendarState extends State<ProZCalendar> {
   DateTime displayDate = DateTime.now();
 
   @override
+  @override
   void initState() {
-    selectedDate = widget.selectedDate;
+    selectedDate = widget.selectedDate.add(const Duration(days: 1));
     displayDate = widget.selectedDate;
     firstDay = widget.firstDay;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.firstDay != null && widget.enable) {
         setState(() {
           selectedDate = selectedDate.add(Duration(days: widget.firstDay!.difference(selectedDate).inDays));
-          displayDate = selectedDate.add(Duration(days: widget.firstDay!.difference(selectedDate).inDays));
+          displayDate = DateTime.now().add(Duration(days: widget.firstDay!.difference(DateTime.now()).inDays));
           widget.onDateSelected(selectedDate);
         });
       } else {
@@ -54,6 +55,7 @@ class _ProZCalendarState extends State<ProZCalendar> {
     });
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
