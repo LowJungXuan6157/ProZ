@@ -105,7 +105,7 @@ class _ProZCalendarState extends State<ProZCalendar> {
             }),
             children: List.generate(
               12,
-                  (month) => GridView.builder(
+              (month) => GridView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 17.h),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -158,8 +158,8 @@ class _ProZCalendarState extends State<ProZCalendar> {
                                 color: isToday
                                     ? Colors.white
                                     : item.enable || !(widget.enable)
-                                    ? null
-                                    : (widget.deselectTextColor),
+                                        ? null
+                                        : (widget.deselectTextColor),
                                 fontSize: 13.sp,
                               ),
                             ),
@@ -214,7 +214,7 @@ class _ProZCalendarState extends State<ProZCalendar> {
         date: date,
         label: date.day.toString(),
         type: CalendarCellType.current,
-        enable: firstDay == null ? true : date.isAfter(firstDay ?? DateTime.now()),
+        enable: firstDay == null ? true : date.isAfter(firstDay?.subtract(const Duration(days:1)) ?? DateTime.now()),
       ));
     }
 
@@ -251,9 +251,9 @@ class CalendarCellData {
   });
 
   Map<String, dynamic> toJson() => {
-    "date": date.toString(),
-    "label": label,
-    "type": type.toString(),
-    "enable": enable.toString(),
-  };
+        "date": date.toString(),
+        "label": label,
+        "type": type.toString(),
+        "enable": enable.toString(),
+      };
 }
