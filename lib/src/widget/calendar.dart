@@ -34,7 +34,7 @@ class _ProZCalendarState extends State<ProZCalendar> {
   int? month;
   int? year;
   final PageController pageController = PageController();
-  DateTime displayDate = DateTime.now().add(const Duration(days: 1));
+  DateTime displayDate = DateTime.now();
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class _ProZCalendarState extends State<ProZCalendar> {
       if (widget.firstDay != null && widget.enable) {
         setState(() {
           selectedDate = selectedDate.add(Duration(days: widget.firstDay!.difference(selectedDate).inDays));
-          displayDate = DateTime.now().add(Duration(days: widget.firstDay!.difference(DateTime.now()).inDays));
+          displayDate = selectedDate.add(Duration(days: widget.firstDay!.difference(selectedDate).inDays));
           widget.onDateSelected(selectedDate);
         });
       } else {
