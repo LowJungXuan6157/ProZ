@@ -12,11 +12,10 @@ class ProZCalendar extends StatefulWidget {
   final Function(DateTime) onDateSelected;
   final bool enable;
   final Color labelTextColor, deselectTextColor, selectedColor;
-  final DateTime today;
+
   const ProZCalendar({
     Key? key,
     required this.selectedDate,
-    required this.today,
     this.firstDay,
     required this.onDateSelected,
     this.enable = true,
@@ -37,7 +36,6 @@ class _ProZCalendarState extends State<ProZCalendar> {
   final PageController pageController = PageController();
   DateTime displayDate = DateTime.now();
 
-
   @override
   void initState() {
     selectedDate = widget.selectedDate;
@@ -47,7 +45,7 @@ class _ProZCalendarState extends State<ProZCalendar> {
       if (widget.firstDay != null && widget.enable) {
         setState(() {
           selectedDate = selectedDate.add(Duration(days: widget.firstDay!.difference(selectedDate).inDays));
-          displayDate = widget.today.add(Duration(days: widget.firstDay!.difference(widget.today).inDays));
+          displayDate = DateTime.now().add(Duration(days: widget.firstDay!.difference(DateTime.now()).inDays));
           widget.onDateSelected(selectedDate);
         });
       } else {
@@ -56,7 +54,6 @@ class _ProZCalendarState extends State<ProZCalendar> {
     });
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +131,7 @@ class _ProZCalendarState extends State<ProZCalendar> {
                           ),
                         );
                       case CalendarCellType.current:
-                        final isToday =  item.date?.day == widget.today.day && item.date?.month == widget.today.month; // Compare with today's date;
+                        final isToday = (selectedDate).day.isEqual(item.date!.day) && (selectedDate).month.isEqual(item.date!.month);
                         return GestureDetector(
                           onTap: () {
                             if (item.enable && widget.enable) {
