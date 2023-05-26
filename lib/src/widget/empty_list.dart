@@ -1,31 +1,31 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/cupertino.dart';
 
-class EmptyListView extends StatelessWidget {
-  const EmptyListView({
+class EmptyList extends StatelessWidget {
+  const EmptyList({
     Key? key,
-    required this.label,
+    required this.imageUrl,
+    required this.text,
     this.fontColor,
   }) : super(key: key);
-  final String label;
+
+  final String imageUrl;
   final Color? fontColor;
+  final Text text;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset('assets/images/empty_search.png'),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.bold,
-              color: fontColor ?? const Color(0xff7f7f7f),
+    return Align(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(image: AssetImage(imageUrl), width: 180),
+            const SizedBox(
+              height: 20,
             ),
-          ),
-        ],
+            text
+          ],
+        ),
       ),
     );
   }
