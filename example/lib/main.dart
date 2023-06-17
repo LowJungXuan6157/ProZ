@@ -29,7 +29,7 @@ class DemoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: FancyContainer(title: 'qwe'),
+        child: ProZDrawingWidget(isLoading: print),
       ),
     );
   }
